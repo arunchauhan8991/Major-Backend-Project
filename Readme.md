@@ -10,12 +10,12 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { ApiError } from "../utils/ApiError.js";
 
-const router = express.Router();
+const app = express();
 
 // Example fake DB call
 const fakeUserDB = [{ id: "1", name: "Alice" }];
 
-router.get(
+app.get(
   "/:id",
   asyncHandler(async (req, res, next) => {
     const user = fakeUserDB.find((u) => u.id === req.params.id);
