@@ -3,7 +3,7 @@
 # Data-Modelling
 ![Screenshot](./data-modelling.jpg)
 
-# how to use 3 utils we have build (ApiError, ApiResponse, asyncHandler)
+# how to use 3 utils I have build (ApiError, ApiResponse, asyncHandler)
 ```javascript
 import express from "express";
 import { asyncHandler } from "../utils/asyncHandler.js";
