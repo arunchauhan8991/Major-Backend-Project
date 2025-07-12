@@ -1,16 +1,17 @@
 import "dotenv/config";
-
 import connectDB from "./db/index.js";
-
-/*
-dotenv.config({
-    path: "./.env" 
-    // we can avoid setting up dotenv config explicitly as we import and config simultaneously
-    // AND we also dont need to provide env file path as it is in root directory.
-})
-    */
+import { app } from "./app.js";
 
 connectDB()
+.then(() => {
+    app.listen(process.env.PORT || 8000, () => {
+        console.log(`Server is running at port : ${process.env.PORT}`);
+    })
+})
+.catch((err) => {
+    console.log("MongoDB Connection Failed !!! ", err);
+    
+})
 
 
 /* METHOD 2 USING IIFE
