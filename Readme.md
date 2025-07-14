@@ -54,3 +54,55 @@ And following will be the output in case of failure
 }
 
 ```
+
+## uploding file from device to server using multer
+
+```javascript 
+import multer from "multer";
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "./public/temp");
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname + "-" + Date.now());
+  },
+});
+
+export const upload = multer({
+  storage: storage,
+  // storage: storage binds the custom multer.diskStorage() logic to your multer upload handler.
+});
+```
+## uploding file from server to cloud using cloudinary 
+
+```javascript
+import { v2 as cloudinary } from "cloudinary";
+import fs from "fs";
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+const uploadOnCloudinary = async (localFilePath) => {
+  try {
+    if (!localFilePath) return null;
+
+    // upload the file on cloudinary
+    const response = await cloudinary.uploader.upload(localFilePath, {
+      resource_type: "auto",
+    });
+    //file has been uploaded succesful
+    console.log("file is uploaded on cloudinary", response.url);
+    return response;
+
+  } catch (error) {
+    //remove the locally saved temporary file as the upload operation got failed
+    fs.unlinkSync(localFilePath)
+  }
+};
+
+export { uploadOnCloudinary }
+```
