@@ -3,7 +3,7 @@
 ### Data-Modelling
 ![Screenshot](./data-modelling.jpg)
 
-### how to use 3 utils I have build (ApiError, ApiResponse, asyncHandler)
+### How to use 3 utils I have build (ApiError, ApiResponse, asyncHandler)
 ```javascript
 import express from "express";
 import { asyncHandler } from "../utils/asyncHandler.js";
@@ -55,7 +55,7 @@ And following will be the output in case of failure
 
 ```
 
-### uploding file from device to server using multer
+### Uploding file from device to server using multer
 
 ```javascript 
 import multer from "multer";
@@ -75,7 +75,7 @@ export const upload = multer({
 });
 ```
 
-### uploding file from server to cloud using cloudinary 
+### Uploding file from server to cloud using cloudinary 
 
 ```javascript
 import { v2 as cloudinary } from "cloudinary";
@@ -108,7 +108,7 @@ const uploadOnCloudinary = async (localFilePath) => {
 export { uploadOnCloudinary }
 ```
 
-### creating usercontroller
+### Creating usercontroller
 
 * get user details from frontend
 * validation - if not empty
@@ -119,3 +119,12 @@ export { uploadOnCloudinary }
 * remove password and refresh token field from respone
 * check for user creation 
 * return response
+
+# Testing through Postman
+
+### Checking registration route/multer/mongodb/cloudinary working
+
+![Screenshot](./public/img/test1.jpg)
+![Screenshot](./public/img/test2.jpg)
+![Screenshot](./public/img/test3.jpg)
+![Screenshot](./public/img/test4.jpg)
