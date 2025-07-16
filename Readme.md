@@ -136,5 +136,5 @@ export { uploadOnCloudinary }
 ![Screenshot](./public/img/test7.jpg)
 
 ### Checking logout functionality
-logiut done and cookies are also deleted
+logout done and cookies are also deleted
 ![Screenshot](./public/img/test8.jpg)
