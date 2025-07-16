@@ -70,16 +70,16 @@ userSchema.methods.isPasswordCorrect = async function (password) {
 
 userSchema.methods.generateAccessToken = function () {
     // jwt.sign() to generate a JWT token
-    return jwt.sign(     
+    return jwt.sign(
       {
         _id: this._id,
-        email: this.email,                        // these are payload
+        email: this.email, // these are payload
         username: this.userSchema,
         fullname: this.fullname,
       },
-      process.env.ACCESS_TOKEN_SECRET,     // this is secret key 
+      process.env.ACCESS_TOKEN_SECRET, // this is secret key
       {
-        expiresIn: ACCESS_TOKEN_EXPIRY    // expiry of token
+        expiresIn: process.env.ACCESS_TOKEN_EXPIRY, // expiry of token
       }
     );
 }
@@ -92,7 +92,7 @@ userSchema.methods.generateRefreshToken = function () {
        },
        process.env.REFRESH_TOKEN_SECRET, // this is secret key
        {
-         expiresIn: REFRESH_TOKEN_EXPIRY, // expiry of token
+         expiresIn: process.env.REFRESH_TOKEN_EXPIRY, // expiry of token
        }
      );
 }
