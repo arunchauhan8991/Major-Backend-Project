@@ -141,7 +141,7 @@ const logOutUser = asyncHandler ( async (req, res) => {
         req.user._id,
         {
             $set: {
-                refreshToken: undefined
+                refreshToken: 1 //this removes the field from document
             }
         },{
 
@@ -277,7 +277,9 @@ const updateUserAvatar = asyncHandler ( async ( req, res) => {
     ).select("-password")
     //TODO delete previous image from cloud
 
-    return res.status(200).json(200, user, "avatar image updated successfully");
+    return res
+      .status(200)
+      .json(new ApiResponse(200, user, "avatar image updated successfully"));
 })
 
 const updateUserCoverImage = asyncHandler(async (req, res) => {
@@ -286,7 +288,7 @@ const updateUserCoverImage = asyncHandler(async (req, res) => {
   if (!coverImageLocalPath) {
     throw new ApiError(400, "Cover Image file is missing");
   }
-  const coverImage = await uploadOnCloudinary(avatarLocalPath);
+  const coverImage = await uploadOnCloudinary(coverImageLocalPath);
 
   if (!coverImage.url) {
     throw new ApiError(400, "Error while uploading Cover Image on cloudinary");
@@ -304,7 +306,7 @@ const updateUserCoverImage = asyncHandler(async (req, res) => {
 
   return res
   .status(200)
-  .json(200, user, "cover image updated successfully")
+  .json(new ApiResponse(200, user, "cover image updated successfully"))
 
 });
 
@@ -388,35 +390,37 @@ const getWatchHistory = asyncHandler ( async (req, res) => {
       },
       {
         $lookup: {
-          from: "videos",                      // Join with the 'videos' collection
-          localField: "watchHistory",          // The field in the 'users' document (array of video IDs)
-          foreignField: "_id",                 // The field in the 'videos' collection to match
-          as: "watchHistory",                  // Output array field (overwrites the original watchHistory)
+          from: "videos", // Join with the 'videos' collection
+          localField: "watchHistory", // The field in the 'users' document (array of video IDs)
+          foreignField: "_id", // The field in the 'videos' collection to match
+          as: "watchHistory", // Output array field (overwrites the original watchHistory)
 
           pipeline: [
             {
-                $lookup: {
-                    from: "users",
-                    localField: "owner",
-                    foreignField: "_id",
-                    as: "owner",
-                    pipeline: [
-                        {
-                            $project: {
-                                fullname: 1,
-                                username: 1,
-                                avatar: 1,
-                            }
-                        }
-                    ]
-                }
+              $lookup: {
+                from: "users",
+                localField: "owner",
+                foreignField: "_id",
+                as: "owner",
+                pipeline: [
+                  {
+                    $project: {
+                      fullname: 1,
+                      username: 1,
+                      avatar: 1,
+                    },
+                  },
+                ],
+              },
             },
             {
-                $addFields: {
-                    $first: "$owner"
-                }
-            }
-          ]
+              $addFields: {
+                owner: {
+                  $first: "$owner",
+                },
+              },
+            },
+          ],
         },
       },
     ]);
