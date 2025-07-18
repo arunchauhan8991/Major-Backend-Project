@@ -122,7 +122,7 @@ export { uploadOnCloudinary }
 
 # Testing through Postman
 
-### Checking registration route/multer/mongodb/cloudinary working
+### Checking registration route/multer/mongodb/cloudinary working.
 
 ![Screenshot](./public/img/test1.jpg)
 ![Screenshot](./public/img/test2.jpg)
