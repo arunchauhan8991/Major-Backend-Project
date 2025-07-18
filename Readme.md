@@ -138,3 +138,24 @@ export { uploadOnCloudinary }
 ### Checking logout functionality
 logout done and cookies are also deleted
 ![Screenshot](./public/img/test8.jpg)
+
+### Checking refresh token functionality
+![Screenshot](./public/img/refresh-token.jpg)
+
+### Checking change-password functionality
+![Screenshot](./public/img/change-password.jpg)
+
+### Checking currentuser route
+![Screenshot](./public/img/current-user.jpg)
+
+### Checking update account details functionality
+![Screenshot](./public/img/update-account.jpg)
+
+### Checking update avatar image functionality
+![Screenshot](./public/img/avatar.jpg)
+
+### Checking update cover image functionality
+![Screenshot](./public/img/cover-image.jpg)
+
+### Checking watchHistory functionality
+![Screenshot](./public/img/history.jpg)
