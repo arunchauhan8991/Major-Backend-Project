@@ -157,5 +157,8 @@ logout done and cookies are also deleted
 ### Checking update cover image functionality
 ![Screenshot](./public/img/cover-image.jpg)
 
-### Checking watchHistory functionality
+### Checking watchHistory functionality using AGGREGATION PIPELINE
 ![Screenshot](./public/img/history.jpg)
+
+### Checking username channel profile using AGGREGATION PIPELINE
+![Screenshot](./public/img/user-channel-profile.jpg)
